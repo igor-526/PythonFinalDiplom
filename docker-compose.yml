@@ -1,0 +1,24 @@
+version: '4'
+
+networks:
+    shopnetwork:
+        driver: bridge
+
+volumes:
+  shop_pgdata:
+
+services:
+  shopdb:
+    image: postgres:14
+    ports:
+      - "5429:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DB}
+      POSTGRES_HOST: localhost
+    volumes:
+      - shop_pgdata:/var/lib/postgresql/data
+    networks:
+      - shopnetwork
+    restart: always
