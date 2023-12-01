@@ -1,0 +1,38 @@
+// Регистрация пользователя (Магазин)
+POST {{baseurl}}/auth/users/
+Content-Type: application/x-www-form-urlencoded
+
+email = igor526@yandex.ru &
+password = superpassword123 &
+type = shop
+
+###
+// Регистрация пользователя (Покупатель)
+POST {{baseurl}}/auth/users/
+Content-Type: application/x-www-form-urlencoded
+
+email = buyer@yandex.ru &
+password = superpassword123 &
+type = buyer
+
+###
+// Авториазция пользователя
+POST {{baseurl}}/auth/token/login/
+Content-Type: application/x-www-form-urlencoded
+
+email = buyer@yandex.ru &
+password = superpassword123
+
+###
+
+// Просмотр списка магазинов
+GET {{baseurl}}/api/v1/shops/
+Authorization: Token {{buyerauthtoken}}
+
+###
+
+// Просмотр списка товаров
+GET {{baseurl}}/api/v1/products/
+Authorization: Token {{buyerauthtoken}}
+
+###

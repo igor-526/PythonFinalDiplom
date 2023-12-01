@@ -48,6 +48,7 @@ class User(AbstractUser):
                             choices=USER_TYPE,
                             max_length=10)
     address = models.CharField(verbose_name="Адрес")
+    username = models.CharField(null=True, blank=True, unique=False)
 
     REQUIRED_FIELDS = ["type"]
     USERNAME_FIELD = 'email'
